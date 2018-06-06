@@ -1,8 +1,7 @@
 package product;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 /**
  * Created by User on 31.05.2018.
@@ -14,6 +13,16 @@ import javax.persistence.Id;
         @UniqueConstraint(columnNames={"name", "brand"})
 )
 public class Product {
+
+    private Product() {}
+
+    public Product(final String name, final String brand, final Double price, final Integer quantity) {
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
