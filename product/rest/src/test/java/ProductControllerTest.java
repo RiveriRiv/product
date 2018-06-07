@@ -67,7 +67,7 @@ public class ProductControllerTest {
     }
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         this.mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .apply(SecurityMockMvcConfigurers.springSecurity())
@@ -81,7 +81,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="ADMIN")
+    @WithMockUser(username="admin")
     public void productNotFound() throws Exception {
         mockMvc.perform(put("/products/update")
                 .with(csrf())
@@ -91,7 +91,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="ADMIN")
+    @WithMockUser(username="admin")
     public void addProduct() throws Exception {
         mockMvc.perform(post("/products/add")
                 .with(csrf())
@@ -101,7 +101,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(username="user")
     public void readProductByName() throws Exception {
         Product product = this.products.get(0);
         mockMvc.perform(get("/products/name/"
@@ -118,10 +118,10 @@ public class ProductControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(username="user")
     public void readProductByNameAndBrand() throws Exception {
         Product product = this.products.get(1);
-        mockMvc.perform(get("/products/name/" + product.getName() + "/brand/"
+        mockMvc.perform(get("/products/name/brand/" + product.getName() + "&"
                 + product.getBrand()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
@@ -135,7 +135,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(username="user")
     public void readAllProducts() throws Exception {
         Product product1 = this.products.get(0);
         Product product2 = this.products.get(1);
@@ -166,7 +166,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="ADMIN")
+    @WithMockUser(username="admin")
     public void deleteProduct() throws Exception {
         Product product = this.products.get(1);
 

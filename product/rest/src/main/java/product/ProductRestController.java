@@ -48,7 +48,7 @@ public class ProductRestController {
         return this.productRepository.findByBrand(brand);
     }
 
-    @GetMapping("/name/{productName}/brand/{brand}")
+    @GetMapping("/name/brand/{productName}&{brand}")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public Collection<Product> readProductsByNameAndBrand(@PathVariable String productName, @PathVariable String brand) {
         logger.debug("Trying to find products by productName: {} and brand: {}", productName, brand);

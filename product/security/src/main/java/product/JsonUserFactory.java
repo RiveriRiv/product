@@ -20,6 +20,8 @@ import java.util.List;
 @EnableWebSecurity
 public class JsonUserFactory {
 
+    private final static String JSON_FILE_NAME = "users.json";
+
     @Bean
     List<User> getUsers() throws IOException, ParseException {
         List<User> users = new ArrayList<>();
@@ -39,7 +41,7 @@ public class JsonUserFactory {
 
     private JSONArray parseJson() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        File file = ResourceUtils.getFile("classpath:users.json");
+        File file = ResourceUtils.getFile("classpath:" + JSON_FILE_NAME);
         FileReader fileReader  = new FileReader(file);
         return (JSONArray) parser.parse(fileReader);
     }
