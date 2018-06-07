@@ -10,5 +10,7 @@ import java.util.Collection;
  */
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Collection<Product> findByName(String name);
+    Collection<Product> findByBrand(String brand);
     Collection<Product> findByNameAndBrand(String name, String brand);
+    Collection<Product> findByQuantityLessThanEqual(Integer quantity);
 }

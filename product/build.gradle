@@ -18,6 +18,9 @@ ext {
 }
 
 subprojects {
-	repositories { mavenLocal()
-		mavenCentral()}
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		maven {url "https://repo.grails.org/grails/plugins"}
+	}
 }
